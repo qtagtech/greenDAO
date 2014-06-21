@@ -31,20 +31,26 @@ import de.greenrobot.daogenerator.ToMany;
 public class ExampleDaoGenerator {
 
     public static void main(String[] args) throws Exception {
-        Schema schema = new Schema(1000, "de.greenrobot.daoexample");
+        Schema schema = new Schema(1000, "com.nest5.businessClient");
 
-        addNote(schema);
+        addSale(schema);
         addCustomerOrder(schema);
 
-        new DaoGenerator().generateAll(schema, "../DaoExample/src-gen");
+        new DaoGenerator().generateAll(schema, "../../Nest5Business/src-gen");
     }
 
-    private static void addNote(Schema schema) {
-        Entity note = schema.addEntity("Note");
-        note.addIdProperty();
-        note.addStringProperty("text").notNull();
-        note.addStringProperty("comment");
-        note.addDateProperty("date");
+    private static void addSale(Schema schema) {
+        Entity sale = schema.addEntity("Sale");
+        sale.addIdProperty();
+        sale.addLongProperty("syncId").notNull();
+        sale.addIntProperty("isDelivery"); 
+        sale.addIntProperty("isTogo"); 
+        sale.addIntProperty("tip"); 
+        sale.addIntProperty("number"); 
+        sale.addStringProperty("method");
+        sale.addDoubleProperty("received");
+        sale.addDoubleProperty("discount");
+        sale.addDateProperty("date");
     }
 
     private static void addCustomerOrder(Schema schema) {
